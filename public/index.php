@@ -4,6 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $request = new App\Http\Request;
 
-//$request->send();
+//usar el metodo del Request para poder usar las peticiones del usuario (rutas)
+$request->send();
 
 ?>

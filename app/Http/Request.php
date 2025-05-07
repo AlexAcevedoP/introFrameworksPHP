@@ -32,4 +32,29 @@ class Request
         : $this->segments[2];
     }
 
+    public function getController(){
+        //obtengo el controlador y le pongo la primera letra en mayuscula
+        $controller = ucfirst($this->controller);
+
+        return "App\Http\Controllers\\{$controller}Controller";//toma el nombre del controlador y lo concatena ej:HomeController
+    }
+
+    public function getMethod(){
+        return $this->method;
+    }
+
+    //metodo para poder usar las configuraciones hechas en este archivo
+    public function send(){
+        $controller = $this->getController();
+        $method = $this->getMethod();
+
+        $response = call_user_func([
+            new $controller,
+            $method
+        ]);
+        $response->send();
+
+    }
+
+
 }
